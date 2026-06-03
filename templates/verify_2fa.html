@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-md mx-auto mt-10">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
+        <h1 class="text-2xl font-semibold mb-6">Two-Factor Authentication</h1>
+        <form method="POST" action="/verify_2fa" class="space-y-5">
+            <div>
+                <label class="block text-sm mb-1.5">Enter 6-digit code from your app</label>
+                <input type="text" name="token" required autocomplete="off" autofocus
+                       class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-zinc-500">
+            </div>
+            <button type="submit"
+                    class="w-full bg-white text-black font-medium py-2.5 rounded-xl hover:bg-zinc-200 transition">
+                Verify Login
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

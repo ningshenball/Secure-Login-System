@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureLogin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-950 text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-zinc-900 border-b border-zinc-800">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="/" class="text-xl font-semibold tracking-tight">SecureLogin</a>
+
+            <!-- Navigation Links -->
+            <div class="flex items-center gap-6 text-sm">
+                
+                {% if session.get('user_id') %}
+                    <!-- When user is logged in -->
+                    <a href="/dashboard" class="hover:text-zinc-300 transition">Dashboard</a>
+                    <a href="/logout" 
+                       class="px-4 py-1.5 bg-white text-black rounded-lg text-sm font-medium hover:bg-zinc-200 transition">
+                        Logout
+                    </a>
+                {% else %}
+                    <!-- When user is NOT logged in -->
+                    <a href="/login" class="hover:text-zinc-300 transition">Login</a>
+                    <a href="/register" 
+                       class="px-4 py-1.5 bg-white text-black rounded-lg text-sm font-medium hover:bg-zinc-200 transition">
+                        Register
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <div class="max-w-5xl mx-auto px-6">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mt-4 px-4 py-3 rounded-xl 
+                        {% if category == 'error' %}bg-red-500/10 border border-red-500 text-red-400
+                        {% else %}bg-green-500/10 border border-green-500 text-green-400{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-6 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

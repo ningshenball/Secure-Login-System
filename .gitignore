@@ -1,0 +1,15 @@
+# Virtual environment
+venv/
+env/
+
+# Database file
+*.db
+secure_login.db
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/

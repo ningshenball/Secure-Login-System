@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-2xl mx-auto mt-10">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
+        <h1 class="text-3xl font-semibold mb-2">Welcome, {{ username }}!</h1>
+        <p class="text-zinc-400 mb-6">You are logged in to the Secure Login System.</p>
+        <div class="flex gap-4">
+            {% if not has_2fa %}
+            <a href="/setup_2fa"
+                class="px-6 py-2.5 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-500 transition">
+                Set up 2FA
+            </a>
+            {% endif %}
+            <a href="/logout"
+                class="px-6 py-2.5 bg-white text-black rounded-xl font-medium hover:bg-zinc-200 transition">
+                Logout
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-md mx-auto mt-10">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 text-center">
+        <h1 class="text-2xl font-semibold mb-2">Set up 2FA</h1>
+        <p class="text-zinc-400 text-sm mb-4">Scan the QR code with Google Authenticator or Authy</p>
+
+        <img src="data:image/png;base64,{{ qr_b64 }}" class="mx-auto border-4 border-white rounded-lg mb-4 w-48">
+
+        <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-3 mb-6">
+            <p class="text-zinc-500 text-xs mb-1">Can't scan the barcode? Enter this key manually:</p>
+            <p class="text-white font-mono text-sm tracking-widest">{{ secret }}</p>
+        </div>
+
+        <form method="POST" action="/setup_2fa" class="space-y-5">
+            <div>
+                <label class="block text-sm mb-1.5 text-left">Enter 6-digit code from the app</label>
+                <input type="text" name="token" required autocomplete="off"
+                       class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 focus:outline-none focus:border-zinc-500 text-center text-lg tracking-widest font-mono">
+            </div>
+            <button type="submit"
+                    class="w-full bg-indigo-600 text-white font-medium py-2.5 rounded-xl hover:bg-indigo-500 transition">
+                Verify & Enable
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
